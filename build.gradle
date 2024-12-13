@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'info.solidsoft.pitest' version '1.7.0'
+    //id 'org.kordamp.gradle.errorprone' version '0.53.0'
+}
+
+group = 'com.ldts.supermario'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.mockito:mockito-core:3.7.7'
+
+    implementation group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.1.1'
+    //implementation 'com.google.errorprone:error_prone_core:2.10.0'
+    //annotationProcessor 'com.google.errorprone:error_prone_core:2.10.0'
+}
+
+
+test {
+    useJUnitPlatform()
+}
+
+application {
+    mainClass.set("com.ldts.supermario.Main")
+}
+
+pitest {
+    junit5PluginVersion = '0.12'
+    verbose = true
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+
+
